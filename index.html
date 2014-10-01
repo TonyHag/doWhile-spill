@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+
+<p>Kampsimulering</p>
+
+<button onClick="kamp()">Bruk vaapen</button>
+<p id="bosshp"></p>
+<p id="helthp"></p>
+
+<p>HP boss</p>
+<div id="slider">
+    <div id="sliderbarBoss">
+    </div>
+    <div id="doob">
+    </div>
+</div>
+<p>Hp Link</hp>
+<div id="slider">
+    <div id="sliderbarHelt">
+    </div>
+    <div id="doob">
+    </div>
+</div>
+<p id="combatlog"></p>
+
+
+
+
+
+
+
+
+
+<script>
+var helt = {
+    navn: "Link",
+    vaapen: "Dagger",
+    atk: 12,
+    hp: 22
+};
+
+var boss = {
+	navn: "Brutus",
+	vaapen: "KQlle",
+	atk:2,
+	hp:45
+}
+
+	//r prosent av k = r/100 *K
+	//prosentTatt = (helt.atk/100)*boss.hp;
+	
+function kamp(){
+	helt.hp = helt.hp - boss.atk;
+	boss.hp = boss.hp - helt.atk;
+	
+	
+	
+	
+	document.getElementById("bosshp").innerHTML = boss.navn + " har " + boss.hp + " hp igjen.";
+	document.getElementById("helthp").innerHTML = helt.navn + " har " + helt.hp + " hp igjen.";
+	document.getElementById("sliderbarBoss").style.width = boss.hp + '%';
+	document.getElementById("sliderbarHelt").style.width = helt.hp + '%';
+	
+	if(boss.hp<0){
+	
+		document.getElementById("combatlog").innerHTML = helt.navn + " Har knust trynet paa " + boss.navn;
+	}else if(helt.hp < 0){
+	
+		document.getElementById("combatlog").innerHTML = helt.navn + " er dQd.";
+	} else{
+	
+		document.getElementById("combatlog").innerHTML = "Pew pew pew!";
+	}
+	
+}
+</script>
+</body>
+</html>
